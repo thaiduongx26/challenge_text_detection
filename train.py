@@ -15,6 +15,8 @@ from torch.utils.data import DataLoader
 from retinanet import coco_eval
 from retinanet import csv_eval
 
+from tqdm import tqdm
+
 assert torch.__version__.split('.')[0] == '1'
 
 print('CUDA available: {}'.format(torch.cuda.is_available()))
@@ -119,7 +121,7 @@ def main(args=None):
 
         epoch_loss = []
 
-        for iter_num, data in enumerate(dataloader_train):
+        for iter_num, data in tqdm(enumerate(dataloader_train)):
             try:
                 optimizer.zero_grad()
 
