@@ -30,5 +30,5 @@ def convert_data_to_csv(image_path, json_path):
     y2 = [data[i][4] for i in range(len(data))]
     class_name = [data[i][5] for i in range(len(data))]
     df = pd.DataFrame({'path': path, 'x1': x1, 'y1': y1, 'x2': x2, 'y2': y2, 'class_name': class_name})
-    df.to_csv('train.csv', index=False)
+    df.to_csv('train.csv', index=False, header=False)
     print('done!')
