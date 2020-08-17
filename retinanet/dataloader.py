@@ -211,9 +211,13 @@ class CSVDataset(Dataset):
 
     def load_image(self, image_index):
         img = skimage.io.imread(self.image_names[image_index])
-
+        
         if len(img.shape) == 2:
             img = skimage.color.gray2rgb(img)
+        
+        if len(img.shape) > 2 and img.shape[2] == 4:
+            #convert the image from RGBA2RGB
+            img = skimage.color.rgba2rgb(img)
 
         return img.astype(np.float32)/255.0
 
