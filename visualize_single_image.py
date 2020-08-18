@@ -6,7 +6,7 @@ import csv
 import cv2
 import argparse
 
-os.environ["CUDA_VISIBLE_DEVICES"]="2,3"
+os.environ["CUDA_VISIBLE_DEVICES"]="2"
 
 def load_classes(csv_reader):
     result = {}
