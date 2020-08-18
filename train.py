@@ -20,7 +20,7 @@ import os
 
 assert torch.__version__.split('.')[0] == '1'
 
-os.environ["CUDA_VISIBLE_DEVICES"]="0,3"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
 cuda = torch.cuda.is_available()
 if cuda:
     torch.cuda.set_device(0)
