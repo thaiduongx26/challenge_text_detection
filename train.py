@@ -16,6 +16,7 @@ from retinanet import coco_eval
 from retinanet import csv_eval
 
 from tqdm import tqdm
+import os
 
 assert torch.__version__.split('.')[0] == '1'
 
