@@ -19,7 +19,10 @@ from tqdm import tqdm
 
 assert torch.__version__.split('.')[0] == '1'
 
-print('CUDA available: {}'.format(torch.cuda.is_available()))
+cuda = torch.cuda.is_available()
+if cuda:
+    torch.cuda.set_device(0)
+print('cuda is_available: ', cuda)
 
 
 def main(args=None):
