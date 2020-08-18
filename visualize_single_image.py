@@ -62,8 +62,8 @@ def detect_image(image_path, model_path, class_list):
         smallest_side = min(rows, cols)
 
         # rescale the image so the smallest side is min_side
-        min_side = 1024
-        max_side = 2048
+        min_side = 2400
+        max_side = 4800
         scale = min_side / smallest_side
 
         # check if the largest side is now greater than max_side, which can happen
@@ -116,7 +116,7 @@ def detect_image(image_path, model_path, class_list):
                 draw_caption(image_orig, (x1, y1, x2, y2), caption)
                 cv2.rectangle(image_orig, (x1, y1), (x2, y2), color=(0, 0, 255), thickness=2)
 
-            cv2.imwrite('image.png', image_orig)
+            cv2.imwrite(ps.path.join('results_test_image', img_name), image_orig)
             # cv2.waitKey(0)
 
 

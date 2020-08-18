@@ -343,7 +343,7 @@ def collater(data):
 class Resizer(object):
     """Convert ndarrays in sample to Tensors."""
 
-    def __call__(self, sample, min_side=1024, max_side=2048):
+    def __call__(self, sample, min_side=2400, max_side=4800):
         image, annots = sample['img'], sample['annot']
 
         rows, cols, cns = image.shape
