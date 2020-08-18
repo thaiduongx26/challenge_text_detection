@@ -62,8 +62,8 @@ def detect_image(image_path, model_path, class_list):
         smallest_side = min(rows, cols)
 
         # rescale the image so the smallest side is min_side
-        min_side = 2400
-        max_side = 4800
+        min_side = 1600
+        max_side = 2400
         scale = min_side / smallest_side
 
         # check if the largest side is now greater than max_side, which can happen
