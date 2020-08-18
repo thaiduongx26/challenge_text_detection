@@ -39,6 +39,7 @@ def main(args=None):
     parser.add_argument('--depth', help='Resnet depth, must be one of 18, 34, 50, 101, 152', type=int, default=50)
     parser.add_argument('--epochs', help='Number of epochs', type=int, default=100)
     parser.add_argument('--batch_size', help='Batch_size', type=int, default=8)
+    parser.add_argument('--from_checkpoint', help='Use the pretrained model')
 
     parser = parser.parse_args(args)
 
@@ -94,6 +95,10 @@ def main(args=None):
         retinanet = model.resnet152(num_classes=dataset_train.num_classes(), pretrained=True)
     else:
         raise ValueError('Unsupported model depth, must be one of 18, 34, 50, 101, 152')
+
+    if parser.from_checkpoint:
+        retinanet.load_state_dict(torch.load(parser.from_checkpoint))
+        print('Loaded checkpoint from {}'.format(parser.from_checkpoint))
 
     use_gpu = True
 
@@ -177,11 +182,11 @@ def main(args=None):
 
         scheduler.step(np.mean(epoch_loss))
 
-        torch.save(retinanet.module, '{}_retinanet_{}.pt'.format(parser.dataset, epoch_num))
+        torch.save(retinanet.module, os.path.join('models_saved', '{}_retinanet_{}.pt'.format(parser.dataset, epoch_num)))
 
     retinanet.eval()
 
-    torch.save(retinanet, 'model_final.pt')
+    torch.save(retinanet, os.path.join('models_saved', 'model_final.pt'))
 
 
 if __name__ == '__main__':
