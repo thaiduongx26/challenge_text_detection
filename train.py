@@ -98,7 +98,7 @@ def main(args=None):
         raise ValueError('Unsupported model depth, must be one of 18, 34, 50, 101, 152')
 
     if parser.from_checkpoint:
-        retinanet.load_state_dict(torch.load(parser.from_checkpoint))
+        retinanet = torch.load(parser.from_checkpoint)
         print('Loaded checkpoint from {}'.format(parser.from_checkpoint))
 
     use_gpu = True
