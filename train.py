@@ -63,7 +63,7 @@ def main(args=None):
             raise ValueError('Must provide --csv_classes when training on COCO,')
 
         dataset_train = CSVDataset(train_file=parser.csv_train, class_list=parser.csv_classes,
-                                   transform=transforms.Compose([Normalizer(), Augmenter(), Resizer()]))
+                                   transform=transforms.Compose([]))
 
         if parser.csv_val is None:
             dataset_val = None
