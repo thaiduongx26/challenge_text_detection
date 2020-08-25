@@ -306,7 +306,7 @@ def collater(data):
 
     imgs = [s['img'] for s in data]
     annots = [s['annot'] for s in data]
-    # scales = [s['scale'] for s in data]
+    scales = [s['scale'] for s in data]
         
     widths = [int(s.shape[0]) for s in imgs]
     heights = [int(s.shape[1]) for s in imgs]
@@ -319,7 +319,7 @@ def collater(data):
 
     for i in range(batch_size):
         img = imgs[i]
-        padded_imgs[i, :int(img.shape[0]), :int(img.shape[1]), :] = torch.from_numpy(img)
+        padded_imgs[i, :int(img.shape[0]), :int(img.shape[1]), :] = img
 
     max_num_annots = max(annot.shape[0] for annot in annots)
     
@@ -331,15 +331,15 @@ def collater(data):
             for idx, annot in enumerate(annots):
                 #print(annot.shape)
                 if annot.shape[0] > 0:
-                    annot_padded[idx, :annot.shape[0], :] = torch.from_numpy(annot)
+                    annot_padded[idx, :annot.shape[0], :] = annot
     else:
         annot_padded = torch.ones((len(annots), 1, 5)) * -1
 
 
     padded_imgs = padded_imgs.permute(0, 3, 1, 2)
 
-    # return {'img': padded_imgs, 'annot': annot_padded, 'scale': scales}
-    return {'img': padded_imgs, 'annot': annot_padded}
+    return {'img': padded_imgs, 'annot': annot_padded, 'scale': scales}
+    # return {'img': padded_imgs, 'annot': annot_padded}
 
 class Resizer(object):
     """Convert ndarrays in sample to Tensors."""
