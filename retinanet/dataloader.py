@@ -339,7 +339,7 @@ def collater(data):
     padded_imgs = padded_imgs.permute(0, 3, 1, 2)
 
     # return {'img': padded_imgs, 'annot': annot_padded, 'scale': scales}
-    return {'img': padded_imgs, 'annot': annot_padde}
+    return {'img': padded_imgs, 'annot': annot_padded}
 
 class Resizer(object):
     """Convert ndarrays in sample to Tensors."""
