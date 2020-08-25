@@ -331,7 +331,7 @@ def collater(data):
             for idx, annot in enumerate(annots):
                 #print(annot.shape)
                 if annot.shape[0] > 0:
-                    annot_padded[idx, :annot.shape[0], :] = annot
+                    annot_padded[idx, :annot.shape[0], :] = torch.from_numpy(annot)
     else:
         annot_padded = torch.ones((len(annots), 1, 5)) * -1
 
