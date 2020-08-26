@@ -1,6 +1,7 @@
 from process.data_generation import image_splitter
 import os
 import json
+from tqdm import tqdm
 
 def read_json(json_path):
     with open(json_path) as json_file:
@@ -22,7 +23,7 @@ if __name__ == "__main__":
     output_folder = 'data/splitted_imgs'
     list_imgs = os.listdir(imgs_folder)
     res = {}
-    for img in list_imgs:
+    for img in tqdm(list_imgs):
         label_path = img.split('.')[0] + '.json'
         bbox = read_json(os.path.join(labels_folder, label_path))
         out = image_splitter(imgs_folder, img, 800, 800, output_folder, bbox)
