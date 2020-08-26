@@ -23,7 +23,7 @@ if __name__ == "__main__":
     res = {}
     for img in list_imgs:
         label_path = img.split('.')[0] + '.json'
-        bbox = read_json(label_path)
+        bbox = read_json(os.path.join(labels_folder, label_path))
         out = image_splitter(imgs_folder, img, output_folder, bbox)
         res.update(out)
     path = []
