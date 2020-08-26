@@ -1,6 +1,7 @@
 import json
 import os
 import pandas as pd
+import cv2
 
 def read_json(json_path, image_path):
     with open(json_path) as json_file:
