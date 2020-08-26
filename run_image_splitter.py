@@ -2,6 +2,7 @@ from process.data_generation import image_splitter
 import os
 import json
 from tqdm import tqdm
+import pandas as pd
 
 def read_json(json_path):
     with open(json_path) as json_file:
