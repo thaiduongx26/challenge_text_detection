@@ -93,6 +93,6 @@ def image_splitter(data_folder, image_name, w, h, ouput_folder, bbox):
                 image_boxes.append((b_new_x1, b_new_y1, b_new_x2, b_new_y2))
         if len(image_boxes) != 0:
             converted_bbox[image_piece_name] = image_boxes
-    cv2.imsave(os.path.join(ouput_folder, image_piece_name), image[y1:y2, x1:x2])
+    cv2.imwrite(os.path.join(ouput_folder, image_piece_name), image[y1:y2, x1:x2])
     return converted_bbox
     
