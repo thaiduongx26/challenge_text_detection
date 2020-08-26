@@ -1,5 +1,6 @@
 from process.data_generation import image_splitter
 import os
+import json
 
 def read_json(json_path):
     with open(json_path) as json_file:
