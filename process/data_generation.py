@@ -45,7 +45,7 @@ def intersection(a,b):
     else:
         return False
 
-def image_splitter(data_folder, image_name, ouput_folder, bbox):
+def image_splitter(data_folder, image_name, w, h, ouput_folder, bbox):
     image = cv2.imread(os.path.join(data_folder, image_name))
     list_image = []
     converted_bbox = {}
