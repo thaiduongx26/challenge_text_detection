@@ -1,5 +1,7 @@
 import cv2  
 import json
+import os
+import copy
 def draw_rectangle_image(image_path, json_path):
     def read_json(json_path):
         with open(json_path) as json_file:
@@ -22,5 +24,16 @@ def draw_rectangle_image(image_path, json_path):
         color = (255, 0, 0) 
         thickness = 2
         image = cv2.rectangle(image, (x1, y1), (x2, y2), color, thickness) 
-    cv2.imwrite('image_output.png', image)
+    cv2.imwrite(image_path[:-4]+'_output.png', image)
     print('done!')
+
+def draw_rectangle_image_by_box(image, image_pos, image_name, bbox):
+    new_img = copy.deepcopy(image)
+    for box in bbox:
+        x1, y1, x2, y2 = box
+        img_x1, img_y1, _, _ = image_pos
+        color = (255, 0, 0) 
+        thickness = 2
+        image = cv2.rectangle(new_img, (x1, y1), (x2, y2), color, thickness) 
+    cv2.imwrite(os.path.join('output', image_name.split('.')[0] + '_output.png'), new_img)
+    
