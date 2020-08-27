@@ -128,7 +128,7 @@ def main(args=None):
     print('Num training images: {}'.format(len(dataset_train)))
 
     for epoch_num in range(parser.epochs):
-
+        count_zero = 0
         retinanet.train()
         retinanet.module.freeze_bn()
 
@@ -164,13 +164,15 @@ def main(args=None):
                 print(
                     'Epoch: {} | Iteration: {} | Classification loss: {:1.5f} | Regression loss: {:1.5f} | Running loss: {:1.5f}'.format(
                         epoch_num, iter_num, float(classification_loss), float(regression_loss), np.mean(loss_hist)))
-
+                if not (regression_loss > 0):
+                    count_zero += 1
+                
                 del classification_loss
                 del regression_loss
             except Exception as e:
                 print(e)
                 continue
-
+        print('number sample zero loss count = ', count_zero)
         if parser.dataset == 'coco':
 
             print('Evaluating dataset')
