@@ -62,8 +62,8 @@ def detect_image(image_path, model_path, class_list):
         smallest_side = min(rows, cols)
 
         # rescale the image so the smallest side is min_side
-        min_side = 1600
-        max_side = 2048
+        min_side = 800
+        max_side = 1000
         scale = min_side / smallest_side
 
         # check if the largest side is now greater than max_side, which can happen
@@ -103,7 +103,6 @@ def detect_image(image_path, model_path, class_list):
 
             for j in range(idxs[0].shape[0]):
                 bbox = transformed_anchors[idxs[0][j], :]
-
                 x1 = int(bbox[0] / scale)
                 y1 = int(bbox[1] / scale)
                 x2 = int(bbox[2] / scale)
