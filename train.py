@@ -100,6 +100,8 @@ def main(args=None):
     if parser.from_checkpoint:
         retinanet = torch.load(parser.from_checkpoint)
         print('Loaded checkpoint from {}'.format(parser.from_checkpoint))
+    
+    print('anchor ratio: ', retinanet.anchors.ratios)
 
     use_gpu = True
 
